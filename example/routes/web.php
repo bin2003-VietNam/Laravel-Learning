@@ -5,7 +5,12 @@ use App\Models\Job;
 
 
 Route::get('/', function () {
-    return view('home');
+    $job = Job::all();
+
+    dd($job[0]->salary);  
+    
+    
+    //return view('home');
 });
 
 Route::get('/jobs', function () {
