@@ -20,7 +20,7 @@
   <body class="h-full">
   ```
 -->
-  <div class="min-h-full bg-gray-400">
+  <div class="min-h-full bg-gray-100">
     <nav class="bg-gray-800">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
