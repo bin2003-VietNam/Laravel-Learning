@@ -32,6 +32,14 @@
                             <x-form-error name="password" />
                         </div>
                     </x-form-feild>
+                    
+                    <x-form-feild>
+                        <x-form-label for="password_confirmation">password_confirmation</x-form-label> 
+                        <div class="mt-2">
+                            <x-form-input id="password_confirmation" name="password_confirmation" placeholder="******" type="password" />
+                            <x-form-error name="password_confirmation" />
+                        </div>
+                    </x-form-feild>
                 </div>
                 <!-- @if($errors->any())
                     <ul>
