@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -41,26 +44,30 @@ class JobController extends Controller
 
     }
 
-    public function edit()
+    public function edit(Job $job)
     {
+        Gate::authorize('edit-job', $job);
 
+        return view('jobs.edit', [
+            'job' => $job,
+        ]);
     }
 
     public function update(Job $job)
     {
-    // validation
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required'],
-    ]);
+        // validation
+        request()->validate([
+            'title' => ['required', 'min:3'],
+            'salary' => ['required'],
+        ]);
 
-    $job->update([
-        'title' => request('title'),
-        'salary' => request('salary'),
-    ]);
-    // redirect the job page
+        $job->update([
+            'title' => request('title'),
+            'salary' => request('salary'),
+        ]);
+        // redirect the job page
 
-    return redirect()->route('jobs.index',['job'=> $job->id]);
+        return redirect()->route('jobs.index', ['job' => $job->id]);
 
     }
 

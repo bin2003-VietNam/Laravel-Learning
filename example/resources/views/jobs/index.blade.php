@@ -7,10 +7,13 @@
     <p>
         This job pay {{ $job['salary'] }} per year
     </p>
+
+    @can('edit',$job)
     <p class="mt-6">
         <x-button href="/job/{{ $job->id }}/edit">
             Edit Job
         </x-button>
     </p>
+    @endcan
 
 </x-layout>

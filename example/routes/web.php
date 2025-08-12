@@ -15,26 +15,23 @@ Route::get('/', function () {
 
     return view('home');
 });
+Route::view('/contact', 'contact');
 
-Route::controller(JobController::class)->group(function () {
-    Route::get('/jobs', [JobController::class, 'index']);
-    Route::post('/jobs', [JobController::class, 'create']);
-    Route::patch('/job/{job}', [JobController::class, 'update']);
-    Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('jobs.index');
-    Route::get('/job/create', [JobController::class, 'show']);
-    Route::get('/job/{job}', function (Job $job) {
+Route::get('/jobs', [JobController::class, 'index']);
+Route::post('/jobs', [JobController::class, 'create'])->middleware('auth');
+Route::patch('/job/{job}', [JobController::class, 'update']);
+Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('jobs.index');
+Route::get('/job/create', [JobController::class, 'show']);
+Route::get('/job/{job}', function (Job $job) {
 
-        return view('jobs.index', [
-            'job' => $job,
-        ]);
-    });
-    Route::get('/job/{job}/edit', function (Job $job) {
-
-        return view('jobs.edit', [
-            'job' => $job,
-        ]);
-    });
+    return view('jobs.index', [
+        'job' => $job,
+    ]);
 });
+Route::get('/job/{job}/edit', [JobController::class, 'edit'])
+    ->middleware('auth')
+    ->can('edit', 'job');
+
 
 // index
 // Route::get('/jobs', function () {
@@ -46,12 +43,11 @@ Route::controller(JobController::class)->group(function () {
 
 //Route::resource('jobs', JobController::class);
 
-Route::view('/contact', 'contact');
 
 // Auth
-Route::get('/register',  [RegisteredUserController::class, 'create']);
-Route::post('/register',  [RegisteredUserController::class, 'store']);
+Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/login',  [SessionController::class, 'create']);
-Route::post('/login',  [SessionController::class, 'login']);
-Route::post('/logout',  [SessionController::class, 'destroy']);
+Route::get('/login', [SessionController::class, 'create']);
+Route::post('/login', [SessionController::class, 'login']);
+Route::post('/logout', [SessionController::class, 'destroy']);
