@@ -32,7 +32,7 @@ class JobController extends Controller
         ]);
 
 
-        Mail::to($job->employer->user->email)->send(
+        Mail::to($job->employer->user->email)->queue(
             new JobPosted($job)
         );
 
