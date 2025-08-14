@@ -1,23 +1,17 @@
-<div>
+<x-panel class="flex flex-col text-center ">
+    <div class="self-start text-sm">Laracasts</div>
 
-    <div class="p-4 bg-white/10 rounded-lg flex flex-col text-center">
-        <div class="self-start text-sm">Laracasts</div>
-
-        <div class="py-8 font-bold">
-            <div>Video Producer</div>
-            <div>Full Time - From $60.000</div>
-        </div>
-
-        <div class="flex justify-between items-center mt-auto">
-            <div class="flex items-center flex-row space-x-2 ">
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-            </div>
-
-            <img src="{{ Vite::asset('resources/images/logo.jpg')}}" alt=""
-                class=" h-15 w-15 rounded-full object-cover" />
-        </div>
+    <div class="py-8">
+        <h3 class="font-bold group-hover:text-blue-600 transition-colors duration-200">Video Producer</h3>
+        <p class="text-sm mt-4">Full Time - From $60.000</p>
     </div>
 
-</div>
+    <div class="flex justify-between items-center mt-auto">
+        <div class="flex items-center flex-row space-x-2 ">
+            <x-tag size="small">BackEnd</x-tag>
+            <x-tag size="small">FrontEnd</x-tag>
+            <x-tag size="small">Manager</x-tag>
+        </div>
+        <x-employer-logo :width="15" />
+    </div>
+</x-panel>
