@@ -3,7 +3,11 @@
     <div class="self-start text-sm">{{$job->employer->name}}</div>
 
     <div class="py-8">
-        <h3 class="font-bold group-hover:text-blue-600 transition-colors duration-200">{{$job->title}}</h3>
+        <h3 class="font-bold group-hover:text-blue-600 transition-colors duration-200">
+            <a href="{{ $job->url }}" target="_blank">
+                {{$job->title}}
+            </a>
+        </h3>
         <p class="text-sm mt-4">{{$job->salary}}</p>
     </div>
 
@@ -13,6 +17,6 @@
                 <x-tag :$tag size="small" />
             @endforeach
         </div>
-        <x-employer-logo :width="10" />
+        <x-employer-logo :width="50" :employer="$job->employer"/>
     </div>
 </x-panel>

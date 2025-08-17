@@ -1,2 +1,6 @@
-@props(['width'=>'20'])
-<img src="{{ Vite::asset('resources/images/logo.jpg')}}" alt="" class=" w-{{$width}} h-{{$width}} rounded-full object-cover" />
+@props(['width' => '20', 'employer'])
+
+<img src="{{ asset('storage/' . $employer->logo) }}" alt="Employer Logo" 
+     alt="" 
+     style="width: {{ $width }}px; height: {{ $width }}px;" 
+     class="rounded-full object-cover" />
